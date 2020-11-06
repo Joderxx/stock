@@ -57,7 +57,7 @@ public class StockNotifyService {
                 .reduce((x1, x2) -> {
                     List<StockMessage> list = new ArrayList<>(x1);
                     list.addAll(x2);
-                    return list;
+                    return this.distinct(list);
                 })
                 .flatMap(item -> {
                     item = new ArrayList<>(new HashSet<>(item));
@@ -131,5 +131,13 @@ public class StockNotifyService {
                 })
                 .filter(s -> !StrUtil.startWith(s.getProfit(), '-'))
                 .collectList();
+    }
+
+    private List<StockMessage> distinct(List<StockMessage> list) {
+        Map<String, StockMessage> map = new HashMap<>();
+        list.forEach(e -> map.put(e.getStockCode(), e));
+        return map.values().stream()
+                .sorted(Comparator.comparing(StockMessage::getStockCode))
+                .collect(Collectors.toList());
     }
 }

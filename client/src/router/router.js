@@ -70,6 +70,11 @@ export const appRouter = [
         path: '/stock-quantify/search-params/detail',
         title: '寻找最优解',
         component: () => import('@/view/stock/search-params')
+      },
+      {
+        path: '/stock-quantify/potential',
+        title: '寻找潜在股票',
+        component: () => import('@/view/stock/potential')
       }
     ]
   },
