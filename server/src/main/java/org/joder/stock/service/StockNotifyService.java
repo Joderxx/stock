@@ -36,11 +36,11 @@ import java.util.stream.Collectors;
 @Service
 public class StockNotifyService {
 
-    private NotifyService notifyService;
-    private StockRealRepository realRepository;
-    private BackTestProcess backTestProcess;
-    private StockHistoryRepository stockHistoryRepository;
-    private StockRepository stockRepository;
+    private final NotifyService notifyService;
+    private final StockRealRepository realRepository;
+    private final BackTestProcess backTestProcess;
+    private final StockHistoryRepository stockHistoryRepository;
+    private final StockRepository stockRepository;
 
     public StockNotifyService(NotifyService notifyService, StockRealRepository realRepository, BackTestProcess backTestProcess,
                               StockHistoryRepository stockHistoryRepository, StockRepository stockRepository) {

@@ -31,6 +31,11 @@ export const appRouter = [
         path: '/stock-normal/history',
         title: '股票历史',
         component: () => import('@/view/stock/history')
+      },
+      {
+        path: '/stock-normal/indicator',
+        title: '股票市盈率',
+        component: () => import('@/view/stock/indicator')
       }
     ]
   },

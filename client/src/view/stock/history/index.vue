@@ -55,7 +55,7 @@ export default {
   mounted () {
     const params = this.$route.query
     this.queryForm = {
-      code: params.code || 'sz000001',
+      code: 'sz000001',
       endDate: params.endDate || this.moment().format('YYYY-MM-DD'),
       startDate: params.startDate || this.moment().add(-3, 'month').format('YYYY-MM-DD')
     }

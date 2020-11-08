@@ -31,3 +31,7 @@ export const suggestLast = (params, data) => http('/stock_simulation/suggest', p
 export const simulation = (params, data) => http('/stock_simulation/simulation', params, data, 'POST')
 
 export const stockPotentialList = (params, data) => http('/stock/potential', params, data, 'GET')
+
+export const stockIndicatorList = (params, data) => http('/stock/indicator', params, data, 'GET')
+
+export const reloadIndicator = (params, data) => http('/stock/indicator/reload', params, data, 'POST')
