@@ -19,7 +19,7 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleQuery">查询</el-button>
+          <el-button type="primary" @click="handleQuery" :loading="loading">查询</el-button>
           <el-button type="primary" v-if="queryForm.tsCode" @click="reload">加载历史</el-button>
         </el-form-item>
       </el-form>
@@ -36,21 +36,25 @@ import IndicatorChart from '@/view/stock/indicator/components/indicator-chart'
 
 export default {
   components: {IndicatorChart},
-  data() {
+  data () {
     return {
       queryForm: {
         tsCode: 'sz000001',
         endDate: this.moment().format('YYYY-MM-DD'),
         startDate: this.moment().add(-6, 'month').format('YYYY-MM-DD')
       },
+      loading: false,
       table: []
     }
   },
   mounted () {
+    this.handleQuery()
   },
   methods: {
     async handleQuery () {
+      this.loading = true
       const res = await stockIndicatorList(this.queryForm)
+      this.loading = false
       if (res) {
         this.table = res
       }

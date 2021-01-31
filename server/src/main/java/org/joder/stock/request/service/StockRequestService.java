@@ -1,11 +1,11 @@
 package org.joder.stock.request.service;
 
+import lombok.SneakyThrows;
 import org.joder.stock.model.config.AppConfig;
 import org.joder.stock.request.domain.StockApi;
 import org.joder.stock.request.domain.StockQuery;
 import org.joder.stock.request.domain.StockResponse;
 import org.joder.stock.request.domain.StockResponseData;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.scheduler.Schedulers;

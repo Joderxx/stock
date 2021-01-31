@@ -36,6 +36,11 @@ export const appRouter = [
         path: '/stock-normal/indicator',
         title: '股票市盈率',
         component: () => import('@/view/stock/indicator')
+      },
+      {
+        path: '/stock-normal/attention',
+        title: '股票关注',
+        component: () => import('@/view/stock/attention')
       }
     ]
   },

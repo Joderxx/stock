@@ -37,6 +37,7 @@ public class StockIndicatorsService {
     }
 
     @Scheduled(cron = "0 0 0 1 * ?")
+//    @PostConstruct
     public void reloadAll() {
         stockRepository.all(StrUtil.EMPTY)
                 .subscribeOn(Schedulers.elastic())

@@ -7,26 +7,19 @@ import org.joder.stock.model.dto.StockDTO;
 import org.joder.stock.model.dto.StockHistoryDTO;
 import org.joder.stock.model.entity.Stock;
 import org.joder.stock.model.entity.StockHistory;
-import org.joder.stock.repository.StockHistoryRepository;
 import org.joder.stock.repository.StockRepository;
 import org.joder.stock.request.domain.StockApi;
 import org.joder.stock.request.service.StockRequestService;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
 /**

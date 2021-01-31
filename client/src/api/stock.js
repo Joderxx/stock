@@ -35,3 +35,11 @@ export const stockPotentialList = (params, data) => http('/stock/potential', par
 export const stockIndicatorList = (params, data) => http('/stock/indicator', params, data, 'GET')
 
 export const reloadIndicator = (params, data) => http('/stock/indicator/reload', params, data, 'POST')
+
+export const listStockExtra = (params, data) => http('/stock/attention', params, data, 'GET')
+
+export const getStockExtra = (params, data) => http('/stock/attention/{tsCode}', params, data, 'GET')
+
+export const updateStockExtra = (params, data) => http('/stock/attention', params, data, 'POST')
+
+export const deleteStockExtra = (params, data) => http('/stock/attention/{tsCode}', params, data, 'DELETE')

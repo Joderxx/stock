@@ -3,8 +3,7 @@ package org.joder.stock.model.constant;
 public enum IncomeTypeEnum {
 
     SPEND("支出", (byte) 1),
-    INCOME("收入",(byte) 0)
-    ;
+    INCOME("收入", (byte) 0);
 
 
     private String text;

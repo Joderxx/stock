@@ -1,7 +1,7 @@
 package org.joder.stock.repository;
 
-import org.joder.stock.model.entity.StockRunResult;
 import org.bson.types.ObjectId;
+import org.joder.stock.model.entity.StockRunResult;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;

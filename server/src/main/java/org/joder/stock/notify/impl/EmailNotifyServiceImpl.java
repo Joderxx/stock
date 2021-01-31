@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.joder.stock.model.constant.StringConstant;
 import org.joder.stock.notify.NotifyService;
 import org.joder.stock.notify.domain.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -57,9 +56,9 @@ public class EmailNotifyServiceImpl implements NotifyService {
         }
     }
 
-    private void notifyMessage(String to, String text, String subject) throws MessagingException{
+    private void notifyMessage(String to, String text, String subject) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
         helper.setFrom(from);
         helper.setTo(to);
         helper.setSubject(subject);
@@ -69,6 +68,6 @@ public class EmailNotifyServiceImpl implements NotifyService {
 
     private String getMessage(Message message) throws IOException, TemplateException {
         Template template = configuration.getTemplate("template.ftl");
-        return FreeMarkerTemplateUtils.processTemplateIntoString(template,message);
+        return FreeMarkerTemplateUtils.processTemplateIntoString(template, message);
     }
 }

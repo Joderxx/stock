@@ -1,9 +1,7 @@
 package com.joder;
 
-import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -13,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +28,7 @@ class TestSplit {
         Matcher matcher = pattern.matcher(str);
         while (matcher.find()) {
             System.out.println(matcher.groupCount());
-            System.out.println(matcher.group(1) + "\t"+matcher.group(2));
+            System.out.println(matcher.group(1) + "\t" + matcher.group(2));
         }
     }
 
@@ -66,7 +63,7 @@ class TestSplit {
     }
 
     @Data
-    static class Item{
+    static class Item {
         private String date;
         private Double pe;
         private Double price;

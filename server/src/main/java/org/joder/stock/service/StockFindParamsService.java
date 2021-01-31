@@ -134,7 +134,7 @@ public class StockFindParamsService implements InitializingBean {
                 Integer start = (Integer) arr[0];
                 Integer end = (Integer) arr[1];
                 Integer interval = (Integer) arr[2];
-                for (int i = start; i <= end; i+=interval) {
+                for (int i = start; i <= end; i += interval) {
                     list.add(i);
                 }
             } else {

@@ -1,7 +1,7 @@
 package org.joder.stock.repository;
 
-import org.joder.stock.model.entity.StockHistory;
 import org.bson.types.ObjectId;
+import org.joder.stock.model.entity.StockHistory;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;

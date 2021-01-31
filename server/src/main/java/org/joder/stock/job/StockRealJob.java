@@ -4,8 +4,9 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.joder.stock.model.entity.Stock;
+import org.joder.stock.model.entity.StockExtra;
+import org.joder.stock.repository.StockExtraRepository;
 import org.joder.stock.repository.StockRealRepository;
-import org.joder.stock.repository.StockRepository;
 import org.joder.stock.request.domain.StockRealData;
 import org.joder.stock.request.service.StockRealDataRequestService;
 import org.joder.stock.service.StockNotifyService;
@@ -13,8 +14,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -24,18 +23,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class StockRealJob {
 
-    private StockRepository stockRepository;
-    private StockRealDataRequestService stockRealDataRequestService;
-    private StockRealRepository stockRealRepository;
-    private StockNotifyService stockNotifyService;
+    private final StockExtraRepository stockExtraRepository;
+    private final StockRealDataRequestService stockRealDataRequestService;
+    private final StockRealRepository stockRealRepository;
+    private final StockNotifyService stockNotifyService;
 
-    public StockRealJob(StockRepository stockRepository, StockRealDataRequestService stockRealDataRequestService,
-                        StockRealRepository stockRealRepository, StockNotifyService stockNotifyService) {
-        this.stockRepository = stockRepository;
+    public StockRealJob(StockExtraRepository stockExtraRepository, StockRealDataRequestService stockRealDataRequestService, StockRealRepository stockRealRepository, StockNotifyService stockNotifyService) {
+        this.stockExtraRepository = stockExtraRepository;
         this.stockRealDataRequestService = stockRealDataRequestService;
         this.stockRealRepository = stockRealRepository;
         this.stockNotifyService = stockNotifyService;
     }
+
 
     @PostConstruct
     public void init() {
@@ -49,15 +48,14 @@ public class StockRealJob {
 
     @Scheduled(cron = "0 35 9-15 ? * 2-6 *")
     public void run() {
-        stockRepository.findAll()
+        stockExtraRepository.findAllByAttention(true)
                 .collectList()
-                .map(e -> e.stream().map(Stock::getTsCode).collect(Collectors.toList()))
-                .map(e -> stockRealDataRequestService.request(e))
+                .map(e -> e.stream().map(StockExtra::getTsCode).collect(Collectors.toList()))
+                .map(stockRealDataRequestService::request)
                 .map(e -> e.stream().map(StockRealData::toStockReal).collect(Collectors.toList()))
-                .flatMap(e -> {
-                    return stockRealRepository.saveAll(e).collectList();
-                })
+                .flatMap(e -> stockRealRepository.saveAll(e).collectList())
                 .then(stockNotifyService.notifyStock())
                 .subscribe();
     }
 }
+
